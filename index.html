@@ -1,52 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Bootply.com - 101004</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
-	</head>
-	<body>
-<div class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#contact">Contact</a></li>
-          <li><a href="#contact">Spielplan</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about">About</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
+<html lang="en" ng-app="tippspiel">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Bootply.com - 101004</title>
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="html://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--<link href="css/styles.css" rel="stylesheet">-->
+</head>
+<body ng-controller="TippspielController as tippspiel">
+<section ng-controller="PanelController as panel">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
 
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active : panel.isSelected(1)}">
+                        <a href ng-click="panel.selectTab(1)">Home</a>
+                    </li>
+                    <li ng-class="{active : panel.isSelected(2)}">
+                        <a href ng-click="panel.selectTab(2)">
+                            Tipps</a>
+                    </li>
+                    <li ng-class="{active : panel.isSelected(3)}">
+                        <a href ng-click="panel.selectTab(3)">Spielplan</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href>About</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+
+
+        </div>
+    </div>
+    <div class="panel" ng-show="panel.isSelected(1)">
+        Tab1
+    </div>
+
+    <div class="panel"  ng-Controller="TippController as tippCtrl" ng-show="panel.isSelected(2)">
+        <!-- Alle Tipps anzeigen -->
+        <h3>Meine Tipps</h3>
+        <blockquote ng-repeat="tipp in tippCtrl.myTipps">
+            <b>Spiel: {{tipp.spielId}}</b>
+            <b>{{tipp.tippMannschaft1}} - {{tipp.tippMannschaft2}}</b>
+        </blockquote>
+
+        <!-- Form um Tipp abzugeben -->
+        <form name="tippForm" ng-submit="tippCtrl.addTipp()">
+            <h3>Neuer Tipp</h3>
+            <p><b>Spiel: </b><select ng-model="tippCtrl.newTipp.partieId">
+                <option  value="-1">Spiel auswählen</option>
+                <option ng-repeat="partie in tippspiel.partien" value={{partie.id}}>{{partie.mannschaft1}}-{{partie.mannschaft2}}</option>
+            </select></p>
+            <p><b>Ergebnis: </b>
+                <input type="number" ng-model="tippCtrl.newTipp.mannschaft1"/>
+                -
+                <input type="number" ng-model="tippCtrl.newTipp.mannschaft2"/></p>
+                    <cite>
+                        <p>{{tippspiel.getPartie(tippCtrl.newTipp.partieId).mannschaft1}}
+                            {{tippCtrl.newTipp.mannschaft1}} -
+                            {{tippspiel.getPartie(tippCtrl.newTipp.partieId).mannschaft2}}
+                            {{tippCtrl.newTipp.mannschaft2}}
+                        </p>
+                    </cite>
+
+            <input type="submit" value="Submit"/>
+
+        </form>
+    </div>
+
+    <div class="panel" ng-show="panel.isSelected(3)">
+        <h3> Gruppe A</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Uhrzeit</th>
+                <th>Spiel</th>
+                <th>Ort</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="partie in tippspiel.partien | filter:{art:'Gruppenspiel A'}">
+                <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
+                <td>{{partie.datum | date:'hh:mm'}}</td>
+                <td>{{partie.mannschaft1}} - {{partie.mannschaft2}}</td>
+                <td>{{partie.ort}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3> Gruppe B</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Uhrzeit</th>
+                <th>Spiel</th>
+                <th>Ort</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="partie in tippspiel.partien | filter:{art:'Gruppenspiel B'}">
+                <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
+                <td>{{partie.datum | date:'hh:mm'}}</td>
+                <td>{{partie.mannschaft1}} - {{partie.mannschaft2}}</td>
+                <td>{{partie.ort}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</section>
 <div class="container">
-  
-  <div class="text-center">
-    <h1>Bootstrap starter template</h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-  </div>
-  
-</div><!-- /.container -->
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/scripts.js"></script>
-	</body>
+
+    <div class="text-center">
+        <h1>Bootstrap starter template</h1>
+
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
+            mostly barebones HTML document.</p>
+    </div>
+
+</div>
+<!-- /.container -->
+<!-- script references -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.js"></script>
+<script src="app.js"></script>
+<!--<script src="js/scripts.js"></script>-->
+
+</body>
 </html>

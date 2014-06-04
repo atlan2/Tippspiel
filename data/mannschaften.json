@@ -1,0 +1,51 @@
+[
+    {
+        "id": 0,
+        "name": "Deutschland",
+        "images": {
+            "thumb": "/images/ft25-r.gif"
+        }
+    },
+    {
+        "id": 1,
+        "name": "Mexiko",
+        "images": {
+            "thumb": "/images/ft27-r.gif"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Kamerun",
+        "images": {
+            "thumb": "/images/ft25-r.gif"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Spanien",
+        "images": {
+            "thumb": "/images/ft5-r.gif"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Niederlande",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Brasilien",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Kamerun",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    }
+]
