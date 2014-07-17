@@ -1,38 +1,38 @@
 [
     {
-        id: 0,
-        mannschaft1: 5,
-        mannschaft2: 6,
-        datum: '2010-06-12T17:00:00.000Z',
-        ort: 'Sao Paulo',
-        ergebnis: '',
-        art: 'Gruppenspiel A'
+        "id": 0,
+        "mannschaft1": 5,
+        "mannschaft2": 6,
+        "datum": "2010-06-12T17:00:00.000Z",
+        "ort": "Sao Paulo",
+        "ergebnis": "",
+        "art": "Gruppenspiel A"
     },
     {
-        id: 1,
-        mannschaft1: 1,
-        mannschaft2: 2,
-        datum: '2010-06-13T13:00:00.000Z',
-        ort: 'Natal',
-        ergebnis: '',
-        art: 'Gruppenspiel A'
+        "id": 1,
+        "mannschaft1": 1,
+        "mannschaft2": 2,
+        "datum": "2010-06-13T13:00:00.000Z",
+        "ort": "Natal",
+        "ergebnis": "",
+        "art": "Gruppenspiel A"
     },
     {
-        id: 2,
-        mannschaft1: 3,
-        mannschaft2: 4,
-        datum: '2010-06-13T13:00:00.000Z',
-        ort: 'Salvador',
-        ergebnis: '',
-        art: 'Gruppenspiel B'
+        "id": 2,
+        "mannschaft1": 3,
+        "mannschaft2": 4,
+        "datum": "2010-06-13T13:00:00.000Z",
+        "ort": "Salvador",
+        "ergebnis": "",
+        "art": "Gruppenspiel B"
     },
     {
-        id: 3,
-        mannschaft1: 1,
-        mannschaft2: 2,
-        datum: '2010-06-13T13:00:00.000Z',
-        ort: 'Cuiaba',
-        ergebnis: '',
-        art: 'Gruppenspiel B'
+        "id": 3,
+        "mannschaft1": 1,
+        "mannschaft2": 2,
+        "datum": "2010-06-13T13:00:00.000Z",
+        "ort": "Cuiaba",
+        "ergebnis": "",
+        "art": "Gruppenspiel B"
     }
 ]

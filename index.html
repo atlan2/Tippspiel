@@ -12,7 +12,7 @@
     <![endif]-->
     <!--<link href="css/styles.css" rel="stylesheet">-->
 </head>
-<body ng-controller="TippspielController as tippspiel">
+<body ng-controller="TippspielController as tippspielCtrl">
 <section ng-controller="PanelController as panel">
     <div class="navbar navbar-default navbar-static-top">
         <div class="container">
@@ -52,20 +52,20 @@
         Tab1
     </div>
 
-    <div class="panel"  ng-Controller="TippController as tippCtrl" ng-show="panel.isSelected(2)">
+    <div class="panel"  ng-show="panel.isSelected(2)" ng-controller="TippController as tippCtrl">>
         <!-- Alle Tipps anzeigen -->
         <h3>Meine Tipps</h3>
-        <blockquote ng-repeat="tipp in tippCtrl.myTipps">
+        <blockquote ng-repeat="tipp in myTipps">
             <b>Spiel: {{tipp.spielId}}</b>
             <b>{{tipp.tippMannschaft1}} - {{tipp.tippMannschaft2}}</b>
         </blockquote>
 
         <!-- Form um Tipp abzugeben -->
-        <form name="tippForm" ng-submit="tippCtrl.addTipp()">
+        <form name="tippForm" ng-submit="addTipp()">
             <h3>Neuer Tipp</h3>
             <p><b>Spiel: </b><select ng-model="tippCtrl.newTipp.partieId">
                 <option  value="-1">Spiel auswählen</option>
-                <option ng-repeat="partie in tippspiel.partien" value={{partie.id}}>{{partie.mannschaft1}}-{{partie.mannschaft2}}</option>
+                <option ng-repeat="partie in partien" value={{partie.id}}>{{partie.mannschaft1.name}} - {{partie.mannschaft2.name}}</option>
             </select></p>
             <p><b>Ergebnis: </b>
                 <input type="number" ng-model="tippCtrl.newTipp.mannschaft1"/>
@@ -84,7 +84,8 @@
         </form>
     </div>
 
-    <div class="panel" ng-show="panel.isSelected(3)">
+    <div class="panel" ng-show="panel.isSelected(3)" ng-controller="TippspielController as tippspielCtrl">
+
         <h3> Gruppe A</h3>
         <table class="table">
             <thead>
@@ -97,10 +98,12 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="partie in tippspiel.partien | filter:{art:'Gruppenspiel A'}">
+            <tr ng-repeat="partie in partien | filter:{art:'Gruppenspiel A'}">
                 <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
                 <td>{{partie.datum | date:'hh:mm'}}</td>
-                <td>{{partie.mannschaft1}} - {{partie.mannschaft2}}</td>
+                <td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
+                    <img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
+                </td>
                 <td>{{partie.ort}}</td>
             </tr>
             </tbody>
@@ -118,10 +121,12 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="partie in tippspiel.partien | filter:{art:'Gruppenspiel B'}">
+            <tr ng-repeat="partie in partien | filter:{art:'Gruppenspiel B'}">
                 <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
                 <td>{{partie.datum | date:'hh:mm'}}</td>
-                <td>{{partie.mannschaft1}} - {{partie.mannschaft2}}</td>
+                <td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
+                    <img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
+                </td>
                 <td>{{partie.ort}}</td>
             </tr>
             </tbody>
