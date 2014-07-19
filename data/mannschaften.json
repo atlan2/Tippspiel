@@ -1,12 +1,5 @@
 [
     {
-        "id": 0,
-        "name": "Deutschland",
-        "images": {
-            "thumb": "/images/ft25-r.gif"
-        }
-    },
-    {
         "id": 1,
         "name": "Mexiko",
         "images": {
@@ -43,7 +36,189 @@
     },
     {
         "id": 6,
-        "name": "Kamerun",
+        "name": "Kroatien",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 7,
+        "name": "Chile",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 8,
+        "name": "Australien",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 9,
+        "name": "Kolumbien",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 10,
+        "name": "Griechenland",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 11,
+        "name": "Elfenbeinküste",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 12,
+        "name": "Japan",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 13,
+        "name": "Costa Rica",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 14,
+        "name": "Uruguay",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 15,
+        "name": "Italien",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 16,
+        "name": "England",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 17,
+        "name": "Frankreich",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 18,
+        "name": "Schweiz",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 19,
+        "name": "Ecuador",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 20,
+        "name": "Honduras",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 21,
+        "name": "Argentien",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 22,
+        "name": "Nigeria",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 23,
+        "name": "Bosnien-Herzegowina",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 24,
+        "name": "Iran",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 25,
+        "name": "Deutschland",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 26,
+        "name": "USA",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 27,
+        "name": "Portugal",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 28,
+        "name": "Ghana",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 29,
+        "name": "Belgien",
+        "images": {
+            "thumb": "/images/ft6-r.gif"
+        }
+    },
+    {
+        "id": 30,
+        "name": "Algerien",
+        "images": {
+            "thumb": "/images/ft1-r.gif"
+        }
+    },
+    {
+        "id": 21,
+        "name": "Russland",
+        "images": {
+            "thumb": "/images/ft4-r.gif"
+        }
+    },
+    {
+        "id": 32,
+        "name": "Südkorea",
         "images": {
             "thumb": "/images/ft4-r.gif"
         }

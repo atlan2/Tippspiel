@@ -1,38 +1,272 @@
 [
     {
-        "id": 0,
+        "id": 1,
         "mannschaft1": 5,
         "mannschaft2": 6,
-        "datum": "2010-06-12T17:00:00.000Z",
+        "datum": "2010-06-12T22:00:00.000Z",
         "ort": "Sao Paulo",
         "ergebnis": "",
         "art": "Gruppenspiel A"
     },
     {
-        "id": 1,
+        "id": 2,
         "mannschaft1": 1,
         "mannschaft2": 2,
-        "datum": "2010-06-13T13:00:00.000Z",
+        "datum": "2010-06-13T18:00:00.000Z",
         "ort": "Natal",
         "ergebnis": "",
         "art": "Gruppenspiel A"
     },
     {
-        "id": 2,
+        "id": 3,
+        "mannschaft1": 5,
+        "mannschaft2": 1,
+        "datum": "2010-06-17T21:00:00.000Z",
+        "ort": "Sao Paulo",
+        "ergebnis": "",
+        "art": "Gruppenspiel A"
+    },
+    {
+        "id": 4,
+        "mannschaft1": 2,
+        "mannschaft2": 6,
+        "datum": "2010-06-19T00:00:00.000Z",
+        "ort": "Natal",
+        "ergebnis": "",
+        "art": "Gruppenspiel A"
+    },
+    {
+        "id": 5,
+        "mannschaft1": 2,
+        "mannschaft2": 5,
+        "datum": "2010-06-23T22:00:00.000Z",
+        "ort": "Sao Paulo",
+        "ergebnis": "",
+        "art": "Gruppenspiel A"
+    },
+    {
+        "id": 6,
+        "mannschaft1": 6,
+        "mannschaft2": 1,
+        "datum": "2010-06-23T22:00:00.000Z",
+        "ort": "Sao Paulo",
+        "ergebnis": "",
+        "art": "Gruppenspiel A"
+    },
+    {
+        "id": 7,
         "mannschaft1": 3,
         "mannschaft2": 4,
-        "datum": "2010-06-13T13:00:00.000Z",
+        "datum": "2010-06-13T21:00:00.000Z",
         "ort": "Salvador",
         "ergebnis": "",
         "art": "Gruppenspiel B"
     },
     {
-        "id": 3,
-        "mannschaft1": 1,
-        "mannschaft2": 2,
-        "datum": "2010-06-13T13:00:00.000Z",
+        "id": 8,
+        "mannschaft1": 7,
+        "mannschaft2": 8,
+        "datum": "2010-06-14T00:00:00.000Z",
         "ort": "Cuiaba",
         "ergebnis": "",
         "art": "Gruppenspiel B"
+    },
+    {
+        "id": 9,
+        "mannschaft1": 8,
+        "mannschaft2": 4,
+        "datum": "2010-06-18T18:00:00.000Z",
+        "ort": "Porto Alegre",
+        "ergebnis": "",
+        "art": "Gruppenspiel B"
+    },
+    {
+        "id": 10,
+        "mannschaft1": 3,
+        "mannschaft2": 7,
+        "datum": "2010-06-18T21:00:00.000Z",
+        "ort": "Rio de Janeiro",
+        "ergebnis": "",
+        "art": "Gruppenspiel B"
+    },
+    {
+        "id": 11,
+        "mannschaft1": 8,
+        "mannschaft2": 3,
+        "datum": "2010-06-23T18:00:00.000Z",
+        "ort": "Curitiba",
+        "ergebnis": "",
+        "art": "Gruppenspiel B"
+    },
+    {
+        "id": 12,
+        "mannschaft1": 4,
+        "mannschaft2": 7,
+        "datum": "2010-06-23T18:00:00.000Z",
+        "ort": "Sao Paulo",
+        "ergebnis": "",
+        "art": "Gruppenspiel B"
+    },
+    {
+        "id": 13,
+        "mannschaft1": 9,
+        "mannschaft2": 19,
+        "datum": "2010-06-14T18:00:00.000Z",
+        "ort": "Belo Horizonte",
+        "ergebnis": "",
+        "art": "Gruppenspiel C"
+    },
+    {
+        "id": 14,
+        "mannschaft1": 11,
+        "mannschaft2": 12,
+        "datum": "2010-06-15T03:00:00.000Z",
+        "ort": "Recife",
+        "ergebnis": "",
+        "art": "Gruppenspiel C"
+    },
+    {
+        "id": 15,
+        "mannschaft1": 9,
+        "mannschaft2": 11,
+        "datum": "2010-06-19T18:00:00.000Z",
+        "ort": "Brasilia",
+        "ergebnis": "",
+        "art": "Gruppenspiel C"
+    },
+    {
+        "id": 16,
+        "mannschaft1": 12,
+        "mannschaft2": 10,
+        "datum": "2010-06-20T00:00:00.000Z",
+        "ort": "Natal",
+        "ergebnis": "",
+        "art": "Gruppenspiel C"
+    },
+    {
+        "id": 17,
+        "mannschaft1": 12,
+        "mannschaft2": 9,
+        "datum": "2010-06-24T22:00:00.000Z",
+        "ort": "Cuiaba",
+        "ergebnis": "",
+        "art": "Gruppenspiel C"
+    },
+    {
+        "id": 18,
+        "mannschaft1": 10,
+        "mannschaft2": 11,
+        "datum": "2010-06-23T22:00:00.000Z",
+        "ort": "Fortaleza",
+        "ergebnis": "",
+        "art": "Gruppenspiel C"
+    },
+    {
+        "id": 19,
+        "mannschaft1": 14,
+        "mannschaft2": 13,
+        "datum": "2010-06-14T21:00:00.000Z",
+        "ort": "Fortaleza",
+        "ergebnis": "",
+        "art": "Gruppenspiel D"
+    },
+    {
+        "id": 20,
+        "mannschaft1": 16,
+        "mannschaft2": 15,
+        "datum": "2010-06-15T00:00:00.000Z",
+        "ort": "Manaus",
+        "ergebnis": "",
+        "art": "Gruppenspiel D"
+    },
+    {
+        "id": 21,
+        "mannschaft1": 14,
+        "mannschaft2": 16,
+        "datum": "2010-06-19T21:00:00.000Z",
+        "ort": "Porto Alegre",
+        "ergebnis": "Sao Paulo",
+        "art": "Gruppenspiel D"
+    },
+    {
+        "id": 22,
+        "mannschaft1": 15,
+        "mannschaft2": 13,
+        "datum": "2010-06-20T18:00:00.000Z",
+        "ort": "Recife",
+        "ergebnis": "",
+        "art": "Gruppenspiel D"
+    },
+    {
+        "id": 23,
+        "mannschaft1": 15,
+        "mannschaft2": 14,
+        "datum": "2010-06-24T18:00:00.000Z",
+        "ort": "Natal",
+        "ergebnis": "",
+        "art": "Gruppenspiel D"
+    },
+    {
+        "id": 24,
+        "mannschaft1": 13,
+        "mannschaft2": 16,
+        "datum": "2010-06-24T18:00:00.000Z",
+        "ort": "Belo Horizonte",
+        "ergebnis": "",
+        "art": "Gruppenspiel D"
+    },
+    {
+        "id": 25,
+        "mannschaft1": 18,
+        "mannschaft2": 19,
+        "datum": "2010-06-15T18:00:00.000Z",
+        "ort": "Brasilia",
+        "ergebnis": "",
+        "art": "Gruppenspiel E"
+    },
+    {
+        "id": 26,
+        "mannschaft1": 17,
+        "mannschaft2": 20,
+        "datum": "2010-06-15T21:00:00.000Z",
+        "ort": "Porto Alegre",
+        "ergebnis": "",
+        "art": "Gruppenspiel E"
+    },
+    {
+        "id": 27,
+        "mannschaft1": 18,
+        "mannschaft2": 17,
+        "datum": "2010-06-20T21:00:00.000Z",
+        "ort": "Salvador",
+        "ergebnis": "",
+        "art": "Gruppenspiel E"
+    },
+    {
+        "id": 28,
+        "mannschaft1": 20,
+        "mannschaft2": 19,
+        "datum": "2010-06-21T00:00:00.000Z",
+        "ort": "Curitiba",
+        "ergebnis": "",
+        "art": "Gruppenspiel E"
+    },
+    {
+        "id": 29,
+        "mannschaft1": 20,
+        "mannschaft2": 18,
+        "datum": "2010-06-25T22:00:00.000Z",
+        "ort": "Manaus",
+        "ergebnis": "",
+        "art": "Gruppenspiel E"
+    },
+    {
+        "id": 30,
+        "mannschaft1": 19,
+        "mannschaft2": 17,
+        "datum": "2010-06-25T22:00:00.000Z",
+        "ort": "Rio de Janeiro",
+        "ergebnis": "",
+        "art": "Gruppenspiel E"
     }
 ]
