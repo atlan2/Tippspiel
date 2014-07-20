@@ -7,6 +7,7 @@
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/tippspiel.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="html://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -52,7 +53,7 @@
         Tab1
     </div>
 
-    <div class="panel"  ng-show="panel.isSelected(2)" ng-controller="TippController as tippCtrl">>
+    <div class="panel" ng-show="panel.isSelected(2)" ng-controller="TippController as tippCtrl">
         <!-- Alle Tipps anzeigen -->
         <h3>Meine Tipps</h3>
         <blockquote ng-repeat="tipp in myTipps">
@@ -61,23 +62,26 @@
         </blockquote>
 
         <!-- Form um Tipp abzugeben -->
-        <form name="tippForm" ng-submit="addTipp()">
+        <form name="tippForm" ng-submit="addTipp(newTipp)">
             <h3>Neuer Tipp</h3>
-            <p><b>Spiel: </b><select ng-model="tippCtrl.newTipp.partieId">
-                <option  value="-1">Spiel auswählen</option>
-                <option ng-repeat="partie in partien" value={{partie.id}}>{{partie.mannschaft1.name}} - {{partie.mannschaft2.name}}</option>
+
+            <p><b>Spiel: </b><select ng-model="newTipp.partieId">
+                <option value="-1">Spiel auswählen</option>
+                <option ng-repeat="partie in partien" value={{partie.id}}>{{partie.mannschaft1.name}} -
+                    {{partie.mannschaft2.name}}
+                </option>
             </select></p>
             <p><b>Ergebnis: </b>
-                <input type="number" ng-model="tippCtrl.newTipp.mannschaft1"/>
+                <input type="number" ng-model="newTipp.tippMannschaft1"/>
                 -
-                <input type="number" ng-model="tippCtrl.newTipp.mannschaft2"/></p>
-                    <cite>
-                        <p>{{tippspiel.getPartie(tippCtrl.newTipp.partieId).mannschaft1}}
-                            {{tippCtrl.newTipp.mannschaft1}} -
-                            {{tippspiel.getPartie(tippCtrl.newTipp.partieId).mannschaft2}}
-                            {{tippCtrl.newTipp.mannschaft2}}
-                        </p>
-                    </cite>
+                <input type="number" ng-model="newTipp.tippMannschaft2"/></p>
+            <cite>
+                <p>{{tippspiel.getPartie(tippCtrl.newTipp.partieId).mannschaft1}}
+                    {{tippCtrl.newTipp.mannschaft1}} -
+                    {{tippspiel.getPartie(tippCtrl.newTipp.partieId).mannschaft2}}
+                    {{tippCtrl.newTipp.mannschaft2}}
+                </p>
+            </cite>
 
             <input type="submit" value="Submit"/>
 
@@ -85,52 +89,42 @@
     </div>
 
     <div class="panel" ng-show="panel.isSelected(3)" ng-controller="TippspielController as tippspielCtrl">
+        <ul class="spielplanSelector">
+        <div style="display: inline" ng-repeat="part in showSpielplan">
 
-        <h3> Gruppe A</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Datum</th>
-                <th>Uhrzeit</th>
-                <th>Spiel</th>
-                <th>Ort</th>
-            </tr>
-            </thead>
-            <tbody>
+                <li><input type="checkbox" ng-model="part.show">{{part.name}}</li>
 
-            <tr ng-repeat="partie in partien | filter:{art:'Gruppenspiel A'}">
-                <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
-                <td>{{partie.datum | date:'hh:mm'}}</td>
-                <td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
-                    <img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
-                </td>
-                <td>{{partie.ort}}</td>
-            </tr>
-            </tbody>
-        </table>
+        </div>
 
-        <h3> Gruppe B</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Datum</th>
-                <th>Uhrzeit</th>
-                <th>Spiel</th>
-                <th>Ort</th>
-            </tr>
-            </thead>
-            <tbody>
+        </ul>
+        <div ng-repeat="part in showSpielplan" ng-include="'spielplan.html'"></div>
 
-            <tr ng-repeat="partie in partien | filter:{art:'Gruppenspiel B'}">
-                <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
-                <td>{{partie.datum | date:'hh:mm'}}</td>
-                <td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
-                    <img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
-                </td>
-                <td>{{partie.ort}}</td>
-            </tr>
-            </tbody>
-        </table>
+
+    </div>
+
+
+    <!--<h3> Gruppe B</h3>-->
+    <!--<table class="table tippspiel">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th>Datum</th>-->
+    <!--<th>Uhrzeit</th>-->
+    <!--<th>Spiel</th>-->
+    <!--<th>Ort</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+
+    <!--<tr ng-repeat="partie in partien | filter:{art:'Gruppenspiel B'}">-->
+    <!--<td>{{partie.datum | date:'dd.MM.yyyy'}}</td>-->
+    <!--<td>{{partie.datum | date:'hh:mm'}}</td>-->
+    <!--<td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} --->
+    <!--<img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}-->
+    <!--</td>-->
+    <!--<td>{{partie.ort}}</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
 
 
     </div>
@@ -151,6 +145,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
 <script src="app.js"></script>
 <!--<script src="js/scripts.js"></script>-->
 

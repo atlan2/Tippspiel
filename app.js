@@ -5,6 +5,20 @@
     var app = angular.module('tippspiel', []);
 
     app.controller('TippspielController',function ($scope, $http) {
+        $scope.showSpielplan = [
+            {'name':'Gruppe A',show :true, filter:'Gruppenspiel A'},
+            {'name':'Gruppe B',show :false, filter:'Gruppenspiel B'},
+            {'name':'Gruppe C',show :true, filter:'Gruppenspiel C'},
+            {'name':'Gruppe D',show :true, filter:'Gruppenspiel D'},
+            {'name':'Gruppe E',show :true, filter:'Gruppenspiel E'},
+            {'name':'Gruppe F',show :true, filter:'Gruppenspiel F'},
+            {'name':'Gruppe G',show :true, filter:'Gruppenspiel G'},
+            {'name':'Gruppe H',show :true, filter:'Gruppenspiel H'},
+            {'name':'Achtelfinale',show :true, filter:'Achtelfinale'},
+            {'name':'Viertelfinale',show :true, filter:'Viertelfinale'},
+            {'name':'Halbfinale',show :true, filter:'Halbfinale'},
+            {'name':'Finale',show :true, filter:'Finale'},
+        ];
 
         $scope.partien = [];
         $scope.init = function () {
@@ -76,9 +90,9 @@
     });
     app.controller('TippController', function ($scope) {
         $scope.myTipps = meineTipps;
-        $scope.newTipp = [];
-        $scope.addTipp = function (tipp) {
-            $scope.myTipps.push(tipp);
+//        $scope.newTipp = [];
+        $scope.addTipp = function (newTipp) {
+            $scope.myTipps.push(newTipp);
         };
 
 
