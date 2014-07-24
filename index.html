@@ -89,6 +89,8 @@
     </div>
 
     <div class="panel" ng-show="panel.isSelected(3)" ng-controller="TippspielController as tippspielCtrl">
+        <a href ng-click="modalTest()">modal</a>
+
         <ul class="spielplanSelector">
         <div style="display: inline" ng-repeat="part in showSpielplan">
 
@@ -144,8 +146,9 @@
 <!-- script references -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/angular.js"></script>
+<script src="js/angular.min.js"></script>
 <script src="js/angular-route.js"></script>
+<script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
 <script src="app.js"></script>
 <!--<script src="js/scripts.js"></script>-->
 

@@ -2,9 +2,29 @@
  * Created by Matthias on 24.05.14.
  */
 (function () {
-    var app = angular.module('tippspiel', []);
+    var app = angular.module('tippspiel', ['ui.bootstrap']);
 
-    app.controller('TippspielController',function ($scope, $http) {
+    app.controller('TippspielController',function ($scope, $modal, $http) {
+       $scope.modalTest =function() {
+           var modalInstance = $modal.open({
+               templateUrl: 'tippModalForm.html',
+               controller: ModalInstanceCtrl,
+               size: size,
+               resolve: {
+                   items: function () {
+                       return $scope.items;
+                   }
+               }
+           });
+
+           modalInstance.result.then(function (selectedItem) {
+               $scope.selected = selectedItem;
+           }, function () {
+               $log.info('Modal dismissed at: ' + new Date());
+           });
+       };
+
+
         $scope.showSpielplan = [
             {'name':'Gruppe A',show :true, filter:'Gruppenspiel A'},
             {'name':'Gruppe B',show :false, filter:'Gruppenspiel B'},
