@@ -1,6 +1,11 @@
 table.tippspiel {
-    width: 50%;
+    width: 80%;
 }
+
+table.tippspiel td {
+    white-space: nowrap;
+}
+
 
 ul.spielplanSelector {
     margin: 0;
@@ -10,4 +15,14 @@ ul.spielplanSelector {
 
 li {
     display: inline;
+}
+
+img.countryLogo {
+    height: 20px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+input.tippDigit {
+    width: 2em;
 }

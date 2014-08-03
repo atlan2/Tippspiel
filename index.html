@@ -89,7 +89,6 @@
     </div>
 
     <div class="panel" ng-show="panel.isSelected(3)" ng-controller="TippspielController as tippspielCtrl">
-        <a href ng-click="modalTest('sm')">modal</a>
 
         <ul class="spielplanSelector">
             <div style="display: inline" ng-repeat="part in showSpielplan">
@@ -99,7 +98,8 @@
             </div>
 
         </ul>
-        <div ng-repeat="part in showSpielplan" ng-include="'spielplan.html'"></div>
+        <div ng-include="'spielplanNachDatum.html'"></div>
+        <!--<div ng-repeat="part in showSpielplan" ng-include="'spielplan.html'"></div>-->
 
 
     </div>

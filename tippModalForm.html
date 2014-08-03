@@ -1,19 +1,37 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-show="existingTipp()">Tipp bearbeiten</h3>
 
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <!--<ul>-->
-                <!--<li ng-repeat="item in items">-->
-                    <!--<a ng-click="selected.item = item">{{ item }}</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-            partieId: <b>{{ tipp.partieId }}</b>
-            mannschaft1: <b>{{ tipp.mannschaft1 }}</b>
-            mannschaft2: <b>{{ tipp.mannschaft2 }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
+    <h3 class="modal-title" ng-show="!existingTipp()">Tipp abgeben</h3>
+</div>
+<div class="modal-body">
+    <table class="table tippspiel">
+        <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Uhrzeit</th>
+            <th>Spiel</th>
+            <th>Ergebnis</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
+            <td>{{partie.datum | date:'hh:mm'}}</td>
+            <td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
+                <img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
+            </td>
+            <td><input type="number" class="form-control tippDigit"> -
+                <input type="number" class="form-control tippDigit"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
 

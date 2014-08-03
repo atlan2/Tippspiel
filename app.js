@@ -4,8 +4,9 @@
 (function () {
     var app = angular.module('tippspiel', ['ui.bootstrap']);
 
-    var TippCtrl = function ($scope, $modalInstance, tipp) {
+    var TippCtrl = function ($scope, $modalInstance, tipp, partie) {
 
+        $scope.partie = partie;
         $scope.tipp = tipp;
 
 
@@ -16,6 +17,10 @@
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+
+        $scope.existingTipp = function () {
+            return $scope.tipp != undefined;
+        }
     };
 
     app.controller('TippspielController', function ($scope, $modal, $http) {
@@ -38,14 +43,17 @@
                 resolve: {
                     tipp: function () {
                         return $scope.meineTipps[partieId];
+                    },
+                    partie: function () {
+                        return $scope.partien[partieId];
                     }
                 }
             });
 
             modalInstance.result.then(function (tipp) {
-                if(tipp != undefined){
+                if (tipp != undefined) {
 //                    if(meineTipps[tipp.partieId]) {
-                        $scope.meineTipps[tipp.partieId] = tipp;
+                    $scope.meineTipps[tipp.partieId] = tipp;
 //                    }
                 }
             }, function () {
@@ -70,8 +78,19 @@
             {'name': 'Finale', show: true, filter: 'Finale'},
         ];
 
+        $scope.meineTipps = {};
+        $scope.checkTipp = function (id) {
+            console.log($scope.meineTipps[id].mannschaft1);
+            if ($scope.meineTipps[id].mannschaft1 != 0 && $scope.meineTipps[id].mannschaft1 != 0) {
+                $scope.meineTipps[id].valid = true;
+            }
 
-        $scope.meineTipps = {1:200 };
+        }
+
+//        $scope.saveTipp = function(partieId) {
+//            $scope.meineTipps[partieid].mannschaft1 = curr
+//
+//        }
 
         $scope.partien = [];
         $scope.init = function () {
@@ -95,6 +114,15 @@
                         partienDict[partien[i].id] = partien[i];
                         partien[i].mannschaft1 = mannschaftenDict[partien[i].mannschaft1];
                         partien[i].mannschaft2 = mannschaftenDict[partien[i].mannschaft2];
+                        var now = new Date(partien[i].datum);
+                        partien[i].datum = new Date(now.getUTCFullYear(),
+                            now.getUTCMonth(),
+                            now.getUTCDate(),
+                            now.getUTCHours(),
+                            now.getUTCMinutes(),
+                            now.getUTCSeconds());
+                        //  console.log(i+partien[i].datum);
+                        $scope.meineTipps[partien[i].id] = {};
                     }
 
                 });
@@ -149,7 +177,6 @@
 
 
     });
-
 
 
 })();

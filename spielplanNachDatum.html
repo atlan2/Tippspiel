@@ -1,0 +1,37 @@
+<table class="table tippspiel">
+    <thead>
+    <tr>
+        <th>Datum</th>
+        <th>Uhrzeit</th>
+        <th>Spiel</th>
+        <th>Ort</th>
+        <th>Tipp</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat="partie in partien | orderBy:'datum'">
+        <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
+        <td>{{partie.datum | date:'HH:mm'}}</td>
+        <td><img class="countryLogo" ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
+            <img class="countryLogo" ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
+        </td>
+        <td>{{partie.ort}}</td>
+        <td>
+            <form name="tippForm" novalidate>
+                <span style="white-space: nowrap">
+                    <input name="input1" type="number" class="tippDigit" min="0" maxlength="2" integer
+                           ng-model="meineTipps[partie.id].mannschaft1" ng-change="checkTipp(partie.id)"> -
+                    <input name="input2" type="number" class="tippDigit" min="0" integer>
+                    <!--<span style="color: green" class="glyphicon glyphicon-ok" ng-show="meineTipps[partie.id].valid"></span>-->
+                      <!--<span style="color: green" class="glyphicon glyphicon-ok" ng-show="tippForm.input1.$dirty && tippForm.input2.$dirty && !tippForm.input1.$invalid && !tippForm.input2.$invalid"></span>-->
+                      <!--<span style="color: red" class="glyphicon glyphicon-minus-sign" ng-show="tippForm.input1.$invalid || tippForm.input2.$invalid"></span>-->
+                    <button class="btn btn-success" ng-click="saveTipp(partie.id)">Tipp speichern</button>
+                    <button ></button>
+                </span>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>

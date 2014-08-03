@@ -7,7 +7,7 @@
             <th>Uhrzeit</th>
             <th>Spiel</th>
             <th>Ort</th>
-            <th></th>
+            <th>Tipp</th>
         </tr>
         </thead>
         <tbody>
@@ -15,12 +15,17 @@
         <tr ng-repeat="partie in partien | filter:{art:part.filter}">
             <td>{{partie.datum | date:'dd.MM.yyyy'}}</td>
             <td>{{partie.datum | date:'hh:mm'}}</td>
-            <td><img ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
-                <img ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
+            <td><img class="countryLogo" ng-src="./{{partie.mannschaft1.images.thumb}}">{{partie.mannschaft1.name}} -
+                <img class="countryLogo" ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
             </td>
             <td>{{partie.ort}}</td>
-            <td><button class="btn btn-success" ng-show="tippAvailable(partie.id)" ng-click="viewTipp(partie.id)">Tipp abgeben</button>
-                <button class="btn btn-primary" ng-show="!tippAvailable(partie.id)" ng-click="viewTipp(partie.id)">Tipp ansehen</button></td>
+            <td>
+                <span style="white-space: nowrap">
+                    <input name="input1" type="number" class="tippDigit" min="0" integer>
+                    <input name="input2" type="number" class="tippDigit" min="0" integer>
+                </span>
+            </td>
+
         </tr>
         </tbody>
     </table>
