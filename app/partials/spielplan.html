@@ -1,0 +1,13 @@
+<ul class="spielplanSelector" >
+    <div style="display: inline" ng-repeat="part in showSpielplan">
+
+        <li><input type="checkbox" ng-model="part.show">{{part.name}}</li>
+
+    </div>
+
+</ul>
+<div ng-include="'spielplanNachDatum.html'"></div>
+<!--<div ng-repeat="part in showSpielplan" ng-include="'spielplan.html'"></div>-->
+
+
+</div>
