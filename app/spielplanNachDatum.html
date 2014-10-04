@@ -5,7 +5,7 @@
         <th>Uhrzeit</th>
         <th>Spiel</th>
         <th>Ort</th>
-        <th>Tipp</th>
+        <th ng-if="currentUser">Tipp</th>
     </tr>
     </thead>
     <tbody>
@@ -17,16 +17,17 @@
             <img class="countryLogo" ng-src="./{{partie.mannschaft2.images.thumb}}">{{partie.mannschaft2.name}}
         </td>
         <td>{{partie.ort}}</td>
-        <td>
-            <form name="tippForm" novalidate>
+        <td ng-if="currentUser">
+            <form name="tippForm" ng-submit="saveTipp(partie.id, input1, input2)" novalidate>
                 <span style="white-space: nowrap">
                     <input name="input1" type="number" class="tippDigit" min="0" maxlength="2" integer
                            ng-model="meineTipps[partie.id].mannschaft1" ng-change="checkTipp(partie.id)"> -
-                    <input name="input2" type="number" class="tippDigit" min="0" integer>
+                     <input name="input2" type="number" class="tippDigit" min="0" maxlength="2" integer
+                            ng-model="meineTipps[partie.id].mannschaft2" >
                     <!--<span style="color: green" class="glyphicon glyphicon-ok" ng-show="meineTipps[partie.id].valid"></span>-->
                       <!--<span style="color: green" class="glyphicon glyphicon-ok" ng-show="tippForm.input1.$dirty && tippForm.input2.$dirty && !tippForm.input1.$invalid && !tippForm.input2.$invalid"></span>-->
                       <!--<span style="color: red" class="glyphicon glyphicon-minus-sign" ng-show="tippForm.input1.$invalid || tippForm.input2.$invalid"></span>-->
-                    <button class="btn btn-success" ng-click="saveTipp(partie.id)">Tipp speichern</button>
+                    <button class="btn btn-success">Tipp speichern</button>
 
                 </span>
             </form>

@@ -76,8 +76,23 @@ tippspielCtrls.controller('TippController', function ($scope, USER_ROLES, AuthSe
 
     }
 
-    $scope.saveTipp = function (partieId) {
-        $scope.meineTipps[partieid].mannschaft1 = curr
+    $scope.saveTipp = function (id, m11, m22) {
+
+       var m1 = $scope.meineTipps[id].mannschaft1;
+       var m2 = $scope.meineTipps[id].mannschaft2;
+       var userId = 1337;
+      var data = {
+            partieId: id,
+            userId: userId,
+            m1 : m1,
+            m2 : m2
+        };
+
+        $http.post('/saveTipp', data)
+            .then(function (res) {
+                Session.create(res.data.id, res.data.user.id, res.data.user.role);
+                return res.data.user;
+            });
 
     }
 
@@ -130,7 +145,7 @@ tippspielCtrls.controller('TippController', function ($scope, USER_ROLES, AuthSe
         console.log("init ferti");
     };
 
-    $scope.init();
+    $scope.init()
 
     $scope.getPartie = function (partieId) {
         if (partieId == undefined) return null;
@@ -176,6 +191,16 @@ tippspielCtrls.controller('LoginController', function ($scope, $rootScope, AUTH_
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
     };
+
+    $scope.logout = function () {
+        AuthService.logout().then(function () {
+            $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+            $scope.setCurrentUser(null);
+        }, function () {
+            $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+            $scope.setCurrentUser(null);
+        });
+    };
 });
 
 tippspielCtrls.constant('AUTH_EVENTS', {
@@ -197,12 +222,23 @@ tippspielCtrls.constant('USER_ROLES', {
 tippspielCtrls.factory('AuthService', function ($http, Session) {
     var authService = {};
 
+    authService.logout = function (credentials) {
+        var id = Session.id;
+        Session.destroy();
+        return $http
+            .post('/logout', id)
+            .then(function (res) {
+                Session.create(res.data.id, res.data.user.id, res.data.user.role);
+                return res.data.user;
+            });
+    };
+
     authService.login = function (credentials) {
         return $http
             .post('/login', credentials)
             .then(function (res) {
-                Session.create(res.id, res.user.id, res.user.role);
-                return res.user;
+                Session.create(res.data.id, res.data.user.id, res.data.user.role);
+                return res.data.user;
             });
     };
 
@@ -233,6 +269,10 @@ tippspielCtrls.service('Session', function () {
         this.userRole = null;
     };
     return this;
+});
+
+tippspielCtrls.controller('SettingsController', function() {
+
 });
 
 

@@ -21,6 +21,14 @@ var app = angular.module('tippspiel', ['ngRoute', 'tippspielControllers']);
             templateUrl: 'partials/login.html',
             controller: 'LoginController'
         })
+        .when('/logout', {
+            templateUrl: 'partials/logout.html',
+            controller: 'LoginController'
+        })
+        .when('/settings', {
+            templateUrl: 'partials/settings.html',
+            controller: 'SettingsController'
+        })
         .otherwise({
             redirect: '/home'
         });

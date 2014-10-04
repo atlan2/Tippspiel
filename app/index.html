@@ -31,16 +31,19 @@
                     <li ng-class="{active : isSelected('home')}">
                         <a href="#/home">Home</a>
                     </li>
-                    <li ng-class="{active : isSelected('tipps')}">
+                    <li ng-if="currentUser" ng-class="{active : isSelected('tipps')}">
                         <a href="#/tipps">
-                            Tipps</a>
+                            Meine Tipps</a>
                     </li>
                     <li ng-class="{active : isSelected('spielplan')}">
                         <a href="#/spielplan">Spielplan</a>
                     </li>
+                    <li ng-if="currentUser" ng-class="{active : isSelected('settings')}">
+                        <a href="#/settings">Einstellungen</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><div ng-if="currentUser">Welcome, {{ currentUser.name }}</div></li>
+                    <li><div ng-controller="LoginController as loginCtrl" ng-if="currentUser">Welcome, {{ currentUser.name }}<br><a ng-Click="logout()">Logout</a></div></li>
                     <li></li><div ng-if="!currentUser"><a href="#/login">Anmelden</a></div></li>
                 </ul>
             </div>
