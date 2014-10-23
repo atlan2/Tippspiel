@@ -9,6 +9,11 @@ tippspielCtrls.controller('ApplicationController', function($scope,USER_ROLES, A
         $scope.currentUser = user;
     };
 
+
+    $scope.$on('$routeChangeStart',function(angularEvent,next,current) {
+        console.log("routeChangestart event in applicationcontroller");
+    });
+
 });
 
 
@@ -130,6 +135,7 @@ tippspielCtrls.controller('TippController', function ($scope, USER_ROLES, AuthSe
                     $scope.meineTipps[partien[i].id] = {};
                 }
 
+                $scope.getAllTipps();
             });
 
 
@@ -158,14 +164,44 @@ tippspielCtrls.controller('TippController', function ($scope, USER_ROLES, AuthSe
         });
         return partie;
     };
+
+    $scope.getAllTipps = function() {
+        console.log("Entered getallTipps()");
+        $http.get('/getAllTipps', {params: {sessionId: 1337}})
+            .then(function (res) {
+                console.log("res"+res);
+                for (var i = 0; i < res.data.posts.length; i++) {
+                    var tipp = res.data.posts[i];
+                    $scope.meineTipps[tipp.partieId].mannschaft1 = tipp.m1;
+                    $scope.meineTipps[tipp.partieId].mannschaft2 = tipp.m2;
+                }
+//                Session.create(res.data.id, res.data.user.id, res.data.user.role);
+//                return res.data.user;
+            });
+    };
+
+    $scope.$on('$routeChangeStart',function(angularEvent,next,current) {
+       console.log("routeChangestart event in tippspielcontroller");
+        console.log("angularEvent:"+angularEvent+ " ,next: "+next+ " ,current: "+current )
+//        if(next.$$route.originalPath == "/spielplan"){
+//            $scope.getAllTipps();
+//        }
+    });
+
 });
 
 tippspielCtrls.controller('PanelController', function ($scope, $location) {
     $scope.isSelected = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
-        console.log('page '+page+" currentRoute "+currentRoute+" "+ (page === currentRoute ? 'true' : 'false'))
+        //    console.log('page '+page+" currentRoute "+currentRoute+" "+ (page === currentRoute ? 'true' : 'false'))
         return page === currentRoute;
     };
+
+
+//    $scope.$on('$routeChangeStart',function(angularEvent,next,current) {
+//        console.log("routeChangestart event in panelcontroller");
+//
+//    });
 });
 
 //tippspielCtrls.controller('TippController', function ($scope) {
@@ -228,8 +264,8 @@ tippspielCtrls.factory('AuthService', function ($http, Session) {
         return $http
             .post('/logout', id)
             .then(function (res) {
-                Session.create(res.data.id, res.data.user.id, res.data.user.role);
-                return res.data.user;
+//                Session.create(res.data.id, res.data.user.id, res.data.user.role);
+//                return res.data.user;
             });
     };
 

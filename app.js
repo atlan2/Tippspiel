@@ -113,12 +113,12 @@ app.get('/dbtest', function (req, res) {
 
 app.post('/saveTipp', function (req, res) {
     var db = req.db;
-
     var partieId = req.body.partieId;
     var mannschaft1 = req.body.m1;
     var mannschaft2 = req.body.m2;
     var userId = req.body.userId;
     var collection = db.get('tippCollection');
+    console.log("partieId "+partieId+" userid "+userId+" mannschaft1: "+mannschaft1+ " mannschaft1: "+mannschaft1)
     collection.update({"partieId": partieId, "userId": userId},
         {$set: {"m1": mannschaft1, "m2": mannschaft2}}, {upsert: true},
         function (err, doc) {
