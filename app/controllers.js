@@ -1,5 +1,75 @@
 var tippspielCtrls = angular.module('tippspielControllers', ['ui.bootstrap']);
 
+tippspielCtrls.service("DataService", ['$scope', function($scope) {
+
+    $scope.getPartienAndMannschaften = function () {
+        var mannschaften;
+
+        $http.get('/data/mannschaften').then(function (mannschaftenJson) {
+            mannschaften = mannschaftenJson.data;
+            console.log("mannschaften geholt");
+            //     $http.get('./data/partien.json').then(function (partienJson) {
+            $http.get('/data/partien').then(function (partienJson) {
+                console.log("partien geholt");
+                var partien = partienJson.data;
+                $scope.partien = partien;
+
+                var mannschaftenDict = {};
+                for (var i = 0; i < mannschaften.length; i++) {
+                    mannschaftenDict[mannschaften[i].id] = mannschaften[i];
+                }
+
+                var partienDict = {};
+                for (var i = 0; i < partien.length; i++) {
+                    partienDict[partien[i].id] = partien[i];
+                    partien[i].mannschaft1 = mannschaftenDict[partien[i].mannschaft1];
+                    partien[i].mannschaft2 = mannschaftenDict[partien[i].mannschaft2];
+                    var now = new Date(partien[i].datum);
+                    partien[i].datum = new Date(now.getUTCFullYear(),
+                        now.getUTCMonth(),
+                        now.getUTCDate(),
+                        now.getUTCHours(),
+                        now.getUTCMinutes(),
+                        now.getUTCSeconds());
+                    //  console.log(i+partien[i].datum);
+                    $scope.meineTipps[partien[i].id] = {};
+                }
+
+         //       $scope.getAllTipps();
+            });
+
+
+//
+//                    for(var i = 0; i<partien.data.length; i++) {
+//                        var partie = partien.data[i];
+//                        console.log(mannschaft.id + " " + mannschaft.name );
+//                }
+
+//            })
+
+        });
+        console.log("init ferti");
+    };
+
+
+   $scope.getAllTipps = function() {
+        console.log("Entered getallTipps()");
+        $http.get('/getAllTipps', {params: {sessionId: 1337}})
+            .then(function (res) {
+                console.log("res"+res);
+                for (var i = 0; i < res.data.posts.length; i++) {
+                    var tipp = res.data.posts[i];
+                    $scope.meineTipps[tipp.partieId].mannschaft1 = tipp.m1;
+                    $scope.meineTipps[tipp.partieId].mannschaft2 = tipp.m2;
+                }
+//                Session.create(res.data.id, res.data.user.id, res.data.user.role);
+//                return res.data.user;
+            });
+    };
+
+}]);
+
+
 tippspielCtrls.controller('ApplicationController', function($scope,USER_ROLES, AuthService) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
@@ -102,56 +172,12 @@ tippspielCtrls.controller('TippController', function ($scope, USER_ROLES, AuthSe
     }
 
     $scope.partien = [];
-    $scope.init = function () {
-        var mannschaften;
-
-        $http.get('/data/mannschaften').then(function (mannschaftenJson) {
-            mannschaften = mannschaftenJson.data;
-            console.log("mannschaften geholt");
-       //     $http.get('./data/partien.json').then(function (partienJson) {
-            $http.get('/data/partien').then(function (partienJson) {
-                console.log("partien geholt");
-                var partien = partienJson.data;
-                $scope.partien = partien;
-
-                var mannschaftenDict = {};
-                for (var i = 0; i < mannschaften.length; i++) {
-                    mannschaftenDict[mannschaften[i].id] = mannschaften[i];
-                }
-
-                var partienDict = {};
-                for (var i = 0; i < partien.length; i++) {
-                    partienDict[partien[i].id] = partien[i];
-                    partien[i].mannschaft1 = mannschaftenDict[partien[i].mannschaft1];
-                    partien[i].mannschaft2 = mannschaftenDict[partien[i].mannschaft2];
-                    var now = new Date(partien[i].datum);
-                    partien[i].datum = new Date(now.getUTCFullYear(),
-                        now.getUTCMonth(),
-                        now.getUTCDate(),
-                        now.getUTCHours(),
-                        now.getUTCMinutes(),
-                        now.getUTCSeconds());
-                    //  console.log(i+partien[i].datum);
-                    $scope.meineTipps[partien[i].id] = {};
-                }
-
-                $scope.getAllTipps();
-            });
 
 
-//
-//                    for(var i = 0; i<partien.data.length; i++) {
-//                        var partie = partien.data[i];
-//                        console.log(mannschaft.id + " " + mannschaft.name );
-//                }
-
-//            })
-
-        });
-        console.log("init ferti");
-    };
-
-    $scope.init()
+    $scope.init = function() {
+        tippspielCtrls.service('DataService', dataService);
+        $scope = dataService.getPartienAndMannschaften();
+    }
 
     $scope.getPartie = function (partieId) {
         if (partieId == undefined) return null;
@@ -165,20 +191,7 @@ tippspielCtrls.controller('TippController', function ($scope, USER_ROLES, AuthSe
         return partie;
     };
 
-    $scope.getAllTipps = function() {
-        console.log("Entered getallTipps()");
-        $http.get('/getAllTipps', {params: {sessionId: 1337}})
-            .then(function (res) {
-                console.log("res"+res);
-                for (var i = 0; i < res.data.posts.length; i++) {
-                    var tipp = res.data.posts[i];
-                    $scope.meineTipps[tipp.partieId].mannschaft1 = tipp.m1;
-                    $scope.meineTipps[tipp.partieId].mannschaft2 = tipp.m2;
-                }
-//                Session.create(res.data.id, res.data.user.id, res.data.user.role);
-//                return res.data.user;
-            });
-    };
+
 
     $scope.$on('$routeChangeStart',function(angularEvent,next,current) {
        console.log("routeChangestart event in tippspielcontroller");
